@@ -21,7 +21,7 @@ async function fetchWithProxy(url) {
 async function loadRandomHeroes() {
   const thisRequestId = ++currentRequestId; // Incrementa y captura el ID actual
   const resultsContainer = document.getElementById('results'); //Almacena donde debe ir la información
-  resultsContainer.innerHTML = `<p class="text-center">Loading random superheroes...</p>`; //Muestra el texto al cargar
+  resultsContainer.innerHTML = `<p class="text-center text-white">Loading random superheroes...</p>`; //Muestra el texto al cargar
 
   const heroes = []; //Crea una lista de los heroes
   const triedIds = new Set(); //Crea una lista de id
@@ -45,7 +45,7 @@ async function loadRandomHeroes() {
   }
   if (thisRequestId !== currentRequestId) return; // Ignorar resultados viejos
   if (heroes.length === 0) { //Si no encuentra nada muestra este mensaje
-    resultsContainer.innerHTML = `<p class="text-center">Could not load random superheroes, please try reloading.</p>`;
+    resultsContainer.innerHTML = `<p class="text-center text-white">Could not load random superheroes, please try reloading.</p>`;
     return;
   }
   //Limpia la página y crea las cartas respectivas para mostrar el heroe
@@ -67,7 +67,7 @@ async function searchSuperhero() {
   }
 
   const resultsContainer = document.getElementById('results');
-  resultsContainer.innerHTML = `<p class="text-center">Loading results...</p>`;
+  resultsContainer.innerHTML = `<p class="text-center text-white">Loading results...</p>`;
 
   try {
     const apiUrl = `https://superheroapi.com/api/${API_TOKEN}/search/${encodeURIComponent(query)}`;
@@ -115,7 +115,12 @@ function createHeroCard(hero) {
         <h5 class="card-title">${hero.name}</h5>
         <div class="card-text">
           <p><strong>Full name:</strong> ${hero.biography['full-name'] || 'Not available'}</p>
+          <p><strong>Alter egos:</strong> ${hero.biography['alter-egos'].split(',').join('<br>') || 'Not available'}</p>
+          <p><strong>Aliases:</strong> ${hero.biography.aliases.join(', ') || 'Not available'}</p>
+          <p><strong>Place of birth:</strong> ${hero.biography['place-of-birth'] || 'Not available'}</p>
+          <p><strong>First appearance:</strong> ${hero.biography['first-appearance'] || 'Not available'}</p>
           <p><strong>Publisher:</strong> ${hero.biography.publisher || 'Not available'}</p>
+          <p><strong>Alignment:</strong> ${hero.biography.alignment || 'Not available'}</p>
           <p><strong>Affiliation:</strong> ${hero.connections['group-affiliation'].split(',').join('<br>') || 'Not available'}</p>
         </div>
       </div>
