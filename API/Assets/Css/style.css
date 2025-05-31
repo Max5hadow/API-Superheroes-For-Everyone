@@ -1,0 +1,40 @@
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px) brightness(0.5);
+    z-index: -1;
+    transition: background-image 0.5s ease;
+}
+:root {
+    --bs-body-font-family: 'Comic Neue', cursive, sans-serif;
+  }
+/* Fondo por defecto */
+body.default-bg::before {
+    background-image: url('Background/Default.jpg');
+}
+
+/* Fondo Marvel */
+body.marvel-bg::before {
+    background-image: url('Background/MARVEL.webp');
+}
+
+/* Fondo DC */
+body.dc-bg::before {
+    background-image: url('Background/DC.jpg');
+}
+.header-logo {
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+  }
+/*Estilo para las cartas cuando se posa el mouse sobre ellas (Clase)*/
+.carta-marvel:hover {
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
+    transition: box-shadow 0.3s ease;
+}
